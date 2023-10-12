@@ -1,0 +1,32 @@
+PUT vector-index
+{
+    "settings": {
+        "index.knn": true,
+        "index.knn.space_type": "cosinesimil",
+        "analysis": {
+          "analyzer": {
+            "default": {
+              "type": "standard",
+              "stopwords": "_english_"
+            }
+          }
+        }
+    },
+    "mappings": {
+        "properties": {
+            "embedded_vector": {
+                "type": "knn_vector",
+                "dimension": 768,
+                "store": true
+            },
+            "question": {
+                "type": "text",
+                "store": true
+            },
+            "answer": {
+                "type": "text",
+                "store": true
+            }
+        }
+    }
+}
